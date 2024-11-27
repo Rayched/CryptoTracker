@@ -19,6 +19,6 @@
 
 ### 📆 Day 1 작업 요약 (2024.11.27 수요일)
 
-- **📑 "Project-Repository Connect"**
+- **📑 "Project-Repository Connected"**
     - Crypto-Tracker mk3 Project File, Github 저장소 생성
     - Project Package, Github 저장소 연동
