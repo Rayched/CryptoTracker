@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Home";
 import Detail from "./Detail";
-import Chart from "./Details_data/Chart";
 
-function RouterComponents(){
+function Routers(){
     return (
         <BrowserRouter>
             <Routes>
@@ -14,4 +13,4 @@ function RouterComponents(){
     );
 };
 
-export default RouterComponents;
+export default Routers;

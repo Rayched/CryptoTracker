@@ -1,8 +1,8 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { isDarkTheme } from './atoms';
+import { useRecoilValue } from 'recoil';
+import { isDarkTheme } from './modules/atoms';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import RouterComponents from './Routes/Router';
-import { DarkTheme, LightTheme } from './themes';
+import { DarkTheme, LightTheme } from './modules/themes';
+import Routers from './Routes/Router';
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -57,37 +57,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App() {
-  //const isDarks = useRecoilValue(isDarkTheme);
-  const [isDarks, setDarks] = useRecoilState(isDarkTheme);
-
-  const ChangeThemes = () => {
-    setDarks(!isDarks);
-  };
-
-  const ItemTest = styled.div`
-    width: 150px;
-    height: 40px;
-    padding: 5px;
-    margin: 10px;
-    text-align: center;
-    font-weight: bold;
+/*
+  const CoinItems_CSS_Sample = styled.div`
     color: ${(props) => props.theme.itemTextColor};
     background-color: ${(props) => props.theme.itemBgColor};
     border: 2px solid ${(props) => props.theme.itemBorderColor};
-    border-radius: 13px;
-  `;
+  `;*/
+
+function App() {
+  const isDarks = useRecoilValue(isDarkTheme);
 
   return (
     <ThemeProvider theme={isDarks ? DarkTheme : LightTheme}>
-      <RouterComponents />
+      <Routers />
       <GlobalStyle />
-      <button onClick={ChangeThemes}>테마 변경</button>
-      <ItemTest>Bitcoin</ItemTest>
-      <ItemTest>Ethereum</ItemTest>
-      <ItemTest>Tether</ItemTest>
-      <ItemTest>Solana</ItemTest>
-      <ItemTest>Dogecoin</ItemTest>
     </ThemeProvider>
   );
 }
