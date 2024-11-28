@@ -1,6 +1,7 @@
 //Fetch Function 모음집
 
 const Coins_BasedURL = "https://api.coinpaprika.com/v1";
+const CoinDetail_basedURL = "https://ohlcv-api.nomadcoders.workers.dev";
 
 export interface I_Coins {
     id?: string;
@@ -13,17 +14,25 @@ export interface I_Coins {
 };
 
 export async function getCoinsData(){
-    const CoinsFetch: I_Coins[] = await(await(
+    const CoinDatas: I_Coins[] = await(await(
         await fetch(`${Coins_BasedURL}/coins`)
     ).json()).slice(0, 50);
 
-    return CoinsFetch;
+    return CoinDatas;
 };
 
-export async function getCoinDetailData(){
-    const CoinDetailFetch = await(await(
-        await fetch(``)
+export async function getCoinDetailData(coinID?: string){
+    const CoinDetails = await(await(
+        await fetch(`${Coins_BasedURL}/coins/${coinID}`)
     ).json());
 
-    return CoinDetailFetch;
+    return CoinDetails;
+};
+
+export async function getCoinTickers(coinID?:string) {
+    const CoinTickers = await(await(
+        await fetch(`${Coins_BasedURL}/tickers/${coinID}`)
+    ).json());
+
+    return CoinTickers;
 };

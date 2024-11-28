@@ -17,10 +17,10 @@ const CoinItems = styled.div`
 const CoinItem = styled.li`
     width: 700px;
     padding: 3px;
-    margin: 5px 0px;
+    margin: 10px 0px;
     background-color: ${(props) => props.theme.itemBgColor};
     border: 2px solid ${(props) => props.theme.itemBorderColor};
-    border-radius: 15px;
+    border-radius: 25px;
 
     a {
         display: flex;
@@ -30,7 +30,7 @@ const CoinItem = styled.li`
     }
 
     &:hover {
-        scale: 1.05;
+        scale: 1.04;
     }
 `;
 
@@ -64,10 +64,10 @@ function Home(){
                         : (
                             CoinList?.map((data) => {
                                 return (
-                                    <CoinItem>
-                                        <Link to={`/${data.id}`}>
-                                            <CoinImg src={`https://static.coinpaprika.com/coin/${data.id}/logo.png`}/>
-                                            <CoinName>{data.name}</CoinName>
+                                    <CoinItem key={data?.id}>
+                                        <Link to={`/${data?.id}`} state={data?.name}>
+                                            <CoinImg src={`https://static.coinpaprika.com/coin/${data?.id}/logo.png`}/>
+                                            <CoinName>{data?.name}</CoinName>
                                         </Link>
                                     </CoinItem>
                                 );
