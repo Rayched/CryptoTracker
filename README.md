@@ -59,3 +59,29 @@
     - API 통해서 받아온 코인의 상세한 데이터 중 <br/>
         일부를 웹 페이지 화면에 출력하고, Detail Page 최하단에 <br/>
         `Home`으로 돌아가는 버튼을 추가하였음.
+
+- **📑 "Detail Page, nested route setting"**
+    - `Detail Page`에 `<Chart />`, `<Price />` 두 Component를 <br/>
+        `nested route`로 추가하였음.
+    - `<Detail />` Component 내부에 아래와 같이 작성, `nested` 설정함.
+    - `nested route` 설정을 완료하고, `<Price />` Component에서 <br/>
+        API를 통해서 해당 코인의 가격 정보 데이터를 받아오는 부분까지만 <br/>
+        코드를 작성하였음. (화면 출력 X, `console`에만 출력해서 확인하였음.)
+
+``` tsx
+/*
+    Routes.tsx에서 Detail Page의 path를 아래와 같이 설정
+    Nested Route가 문제 없이 동작한다.
+    path="/:coinID/*" (* => 일종의 대입 연산자 비슷한 거라고 생각하자.)
+*/
+function Detail(){
+    return (
+        <>
+            <Routes>
+                <Route path="chart" element={<Chart />}/>
+                <Route path="price" element={<Price />}/>
+            </Routes>
+        </>
+    );
+}
+``` 

@@ -3,10 +3,12 @@
 //Detail Components
 
 import { useQuery } from "react-query";
-import { Link, useParams } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import { getCoinDetailData } from "../modules/fetchs";
 import LoadingPage from "../modules/LoadingPage";
 import styled from "styled-components";
+import Chart from "./Details_data/Chart";
+import Price from "./Details_data/Price";
 
 const HomeBtn = styled.div`
     display: flex;
@@ -60,6 +62,10 @@ function Detail(){
                     </div>
                 )
             }
+            <Routes>
+                <Route path="price" element={<Price />}/>
+                <Route path="chart" element={<Chart />}/>
+            </Routes>
             <HomeBtn>
                 <Link to={"/"}>
                     ← Home
