@@ -6,64 +6,77 @@
 import { useQuery } from "react-query";
 import { getCoinsData, I_Coins } from "../modules/fetchs";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Headers = styled.header`
-  padding: 10px 0px;
-  background-color: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const CoinItems = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
-const Titles = styled.h3`
-  font-size: 19px;
-  font-weight: bold;
-  color: inherit;
-`;
-
-const NavBar = styled.nav``;
-
-const CoinItems = styled.li`
+const CoinItem = styled.li`
+    width: 700px;
     padding: 3px;
     margin: 5px 0px;
+    background-color: ${(props) => props.theme.itemBgColor};
+    border: 2px solid ${(props) => props.theme.itemBorderColor};
+    border-radius: 15px;
+
+    a {
+        display: flex;
+        text-decoration: none;
+        color: ${(props) => props.theme.itemTextColor};
+        align-items: center;
+    }
+
+    &:hover {
+        scale: 1.05;
+    }
+`;
+
+const CoinImg = styled.img`
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin: 0px 10px;
+`;
+
+const CoinName = styled.div`
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: bold;
 `;
 
 function Home(){
-    const {isLoading: CoinsLoading, data: Coins} = useQuery<I_Coins[]>({
+    const {isLoading: CoinsLoading, data: CoinList} = useQuery<I_Coins[]>({
         queryKey: "CoinsData",
         queryFn: getCoinsData
     });
 
     return (
-        <div>
-            <div>
-                <Headers>
-                    <Titles>
-                        <div>Crypto Tracker mk3</div>
-                    </Titles>
-                    <NavBar>
-                        <button>테마 변경</button>
-                    </NavBar>
-                </Headers>
-            </div>
-            <div>
+        <>
+            <CoinItems>
                 <ul>
                     {
                         CoinsLoading ? "데이터 가져오는 중..."
                         : (
-                            Coins?.map((data) => {
+                            CoinList?.map((data) => {
                                 return (
-                                    <CoinItems>
-                                        {data.id} / {data.name}
-                                    </CoinItems>
+                                    <CoinItem>
+                                        <Link to={`/${data.id}`}>
+                                            <CoinImg src={`https://static.coinpaprika.com/coin/${data.id}/logo.png`}/>
+                                            <CoinName>{data.name}</CoinName>
+                                        </Link>
+                                    </CoinItem>
                                 );
                             })
                         )
                     }
                 </ul>
-            </div>
-        </div>
+            </CoinItems>
+        </>
     );
 };
 

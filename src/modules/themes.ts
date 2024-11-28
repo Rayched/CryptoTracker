@@ -14,7 +14,7 @@ export const LightTheme: I_Theme = {
     BgColor: "#f1f2f6",
     TextColor: "black",
     itemBgColor: "#ED4C67",
-    itemTextColor: "#f7f1e3",
+    itemTextColor: "#ffffff",
     itemBorderColor: "#FDA7DF"
 };
 

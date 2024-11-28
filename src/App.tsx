@@ -3,6 +3,7 @@ import { isDarkTheme } from './modules/atoms';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { DarkTheme, LightTheme } from './modules/themes';
 import Routers from './Routes/Router';
+import ToggleBtn from './modules/ToggleBtn';
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -57,18 +58,38 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-/*
-  const CoinItems_CSS_Sample = styled.div`
-    color: ${(props) => props.theme.itemTextColor};
-    background-color: ${(props) => props.theme.itemBgColor};
-    border: 2px solid ${(props) => props.theme.itemBorderColor};
-  `;*/
+const Crypto_header = styled.header``;
+
+const Titles = styled.div`
+  padding: 25px 0px;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+
+  font-size: 25px;
+  font-weight: bold;
+  color: inherit;
+`;
+
+const NavBar = styled.nav`
+    display: flex;
+    padding: 5px;
+    justify-content: right;
+`;
 
 function App() {
   const isDarks = useRecoilValue(isDarkTheme);
 
   return (
     <ThemeProvider theme={isDarks ? DarkTheme : LightTheme}>
+      <Crypto_header>
+                <Titles>
+                    Crypto Tracker mk3
+                </Titles>
+                <NavBar>
+                    <ToggleBtn />
+                </NavBar>
+            </Crypto_header>
       <Routers />
       <GlobalStyle />
     </ThemeProvider>
