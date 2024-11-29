@@ -95,8 +95,8 @@ function App() {
     <ThemeProvider theme={isDarks ? DarkTheme : LightTheme}>
       <Crypto_header>
         <Titles>
-            Crypto Tracker mk3
-        </Titles>
+            Crypto Tracker
+        </Titles> 
         <NavBar>
             <ToggleBtn />
         </NavBar>

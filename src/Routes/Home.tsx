@@ -8,6 +8,7 @@ import { getCoinsData, I_Coins } from "../modules/fetchs";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LoadingPage from "../modules/LoadingPage";
+import { Helmet } from "react-helmet-async";
 
 const CoinItems = styled.div`
     display: flex;
@@ -58,6 +59,9 @@ function Home(){
 
     return (
         <>
+            <Helmet>
+                <title>Crypto Tracker</title>
+            </Helmet>
             <CoinItems>
                 <ul>
                     {
