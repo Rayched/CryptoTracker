@@ -7,6 +7,7 @@ import { useQuery } from "react-query";
 import { getCoinsData, I_Coins } from "../modules/fetchs";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import LoadingPage from "../modules/LoadingPage";
 
 const CoinItems = styled.div`
     display: flex;
@@ -60,7 +61,7 @@ function Home(){
             <CoinItems>
                 <ul>
                     {
-                        CoinsLoading ? "데이터 가져오는 중..."
+                        CoinsLoading ? <LoadingPage />
                         : (
                             CoinList?.map((data) => {
                                 return (

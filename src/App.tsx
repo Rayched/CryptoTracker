@@ -58,10 +58,14 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Crypto_header = styled.header``;
+const Crypto_header = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Titles = styled.div`
-  padding: 25px 0px;
+  padding: 20px 0px;
   background-color: inherit;
   display: flex;
   justify-content: center;
@@ -72,9 +76,16 @@ const Titles = styled.div`
 `;
 
 const NavBar = styled.nav`
-    display: flex;
-    padding: 5px;
-    justify-content: right;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  margin-bottom: 5px;
+`
+
+const SolidBar = styled.div`
+  background-color: ${(props) => props.theme.itemBgColor};
+  width: 85%;
+  height: 3px;
 `;
 
 function App() {
@@ -83,13 +94,14 @@ function App() {
   return (
     <ThemeProvider theme={isDarks ? DarkTheme : LightTheme}>
       <Crypto_header>
-                <Titles>
-                    Crypto Tracker mk3
-                </Titles>
-                <NavBar>
-                    <ToggleBtn />
-                </NavBar>
-            </Crypto_header>
+        <Titles>
+            Crypto Tracker mk3
+        </Titles>
+        <NavBar>
+            <ToggleBtn />
+        </NavBar>
+        <SolidBar />
+      </Crypto_header>
       <Routers />
       <GlobalStyle />
     </ThemeProvider>
