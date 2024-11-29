@@ -1,7 +1,7 @@
 //Fetch Function 모음집
 
 const Coins_BasedURL = "https://api.coinpaprika.com/v1";
-const CoinDetail_basedURL = "https://ohlcv-api.nomadcoders.workers.dev";
+const Chart_basedURL = "https://ohlcv-api.nomadcoders.workers.dev";
 
 export interface I_Coins {
     id?: string;
@@ -36,3 +36,11 @@ export async function getCoinTickers(coinID?:string) {
 
     return CoinTickers;
 };
+
+export async function getCoin_chartData(coinID?:string) {
+    const ChartData = await(await(
+        await fetch(`${Chart_basedURL}/?coinId=${coinID}`)
+    ).json());
+
+    return ChartData;
+}

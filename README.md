@@ -104,4 +104,48 @@ function Detail(){
         - `가격`,`시간 별 가격 변동률(1h, 1일, 주간, 월간, 년간)`
         - 데이터를 표(Table)의 형태로 화면에 출력시켰다.
 
-- **📑 ""**
+- **📑 "Chart Component 작업 1, 현재 탭 확인하기 (Chart/Price)"**
+    - **1. 현재 탭 확인하는 기능 업데이트**
+    ``` tsx
+    import {useMatch} from "react-router-dom";
+
+    const Nesteds = styled.div``;
+    const Nested_Items = styled.div`
+        /*
+            isActive의 값에 따라, 해당 탭의 버튼, 글자 색이
+            다른 색으로 표시함으로써 사용자가 현재 탭을
+            확인할 수 있게 설정하였다.
+        */
+    `;
+
+    function Detail(){
+        /*react-router-dom*/
+        const chartMatch = useMatch("/:coinID/chart");
+        const priceMatch = useMatch("/:coinID/price");
+        
+        return (
+            <>
+                <Nesteds>
+                    <Nested_Items isActive={chartMatch !== null}>
+                        <Link to={`/${coinID}/chart`}>Chart</Link>
+                    </Nested_Items>
+                    <Nested_Items isActive={priceMatch !== null}>
+                        <Link to={`/${coinID}/price`}>Price</Link>
+                    </Nested_Items>
+                </Nesteds>
+            </>
+            );
+        }
+    ```
+    - `react-router-dom`의 `useMatch()` Hook을 활용했다.
+    - 현재 URL과 인자로 전달한 URL이 일치하는 경우 <br/>
+        해당 URL의 정보를 return하고, 아닌 경우엔 `null`을 return하는
+        `react-router-dom`의 Hook이다.
+
+    - **2. Chart Components 구현**
+        - 저번 Code Challenge에서, Chart Component 구현하는데 <br/>
+            제일 오랜 시간이 걸렸고, 힘이 들었다.
+        - 다른 컴포넌트를 구현할 때는 재밌었지만 <br/>
+            Chart 컴포넌트는 구현하는 과정이 많이 어렵기 때문에
+        - 전에 작성해놓은 코드를 복사+붙여넣기 했다...
+

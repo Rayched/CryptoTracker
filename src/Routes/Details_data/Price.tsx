@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
-const Titles = styled.div`
+const PriceTitles = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -61,33 +61,38 @@ function Price(){
         queryFn: () => getCoinTickers(coinID)
     });
 
-    useEffect(() => console.log(TickerData), [TickerLoading]);
-
     return (
-        <Wrapper>
-            <Titles>
-                <img src={`https://static.coinpaprika.com/coin/${coinID}/logo.png`}/>
-                <h4>{TickerData?.name} {TickerData?.symbol} 가격</h4>
-            </Titles>
-            <TickerBox>
-                <Ticker_Item>
-                    <span>가격</span>
-                    <span>1 Hour</span>
-                    <span>24 Hour</span>
-                    <span>주간</span>
-                    <span>월간</span>
-                    <span>년간</span>
-                </Ticker_Item>
-                <Ticker_Item>
-                    <span>$ {TickerData?.quotes?.USD?.price.toFixed(2)}</span>
-                    <span>{TickerData?.quotes.USD.percent_change_1h + "%"}</span>
-                    <span>{TickerData?.quotes.USD.percent_change_24h + "%"}</span>
-                    <span>{TickerData?.quotes.USD.percent_change_7d + "%"}</span>
-                    <span>{TickerData?.quotes.USD.percent_change_30d + "%"}</span>
-                    <span>{TickerData?.quotes.USD.percent_change_1y + "%"}</span>
-                </Ticker_Item>
-            </TickerBox>
-        </Wrapper>
+        <>
+            {
+                TickerLoading ? `${coinID}의 가격 정보를 가져오고 있습니다.`
+                : (
+                    <Wrapper>
+                        <PriceTitles>
+                            <img src={`https://static.coinpaprika.com/coin/${coinID}/logo.png`}/>
+                            <h4>{TickerData?.name} {TickerData?.symbol} 가격</h4>
+                        </PriceTitles>
+                        <TickerBox>
+                            <Ticker_Item>
+                                <span>가격</span>
+                                <span>1 Hour</span>
+                                <span>24 Hour</span>
+                                <span>주간</span>
+                                <span>월간</span>
+                                <span>년간</span>
+                            </Ticker_Item>
+                            <Ticker_Item>
+                                <span>$ {TickerData?.quotes?.USD?.price.toFixed(2)}</span>
+                                <span>{TickerData?.quotes.USD.percent_change_1h + "%"}</span>
+                                <span>{TickerData?.quotes.USD.percent_change_24h + "%"}</span>
+                                <span>{TickerData?.quotes.USD.percent_change_7d + "%"}</span>
+                                <span>{TickerData?.quotes.USD.percent_change_30d + "%"}</span>
+                                <span>{TickerData?.quotes.USD.percent_change_1y + "%"}</span>
+                            </Ticker_Item>
+                        </TickerBox>
+                    </Wrapper>
+                )
+            }
+        </>
     );
 };
 

@@ -3,13 +3,17 @@
 //Detail Components
 
 import { useQuery } from "react-query";
-import { Link, Route, Routes, useParams } from "react-router-dom";
+import { Link, Route, Routes, useMatch, useParams } from "react-router-dom";
 import { getCoinDetailData, getCoinTickers } from "../modules/fetchs";
 import LoadingPage from "../modules/LoadingPage";
 import styled from "styled-components";
 import Chart from "./Details_data/Chart";
 import Price from "./Details_data/Price";
 import { useEffect } from "react";
+
+interface I_MatchCheck {
+    isActive: boolean|undefined;
+}
 
 const Wrapper = styled.div`
     display: flex;
@@ -87,22 +91,22 @@ const Nesteds = styled.div`
     width: 300px;
     padding: 10px 20px;
 
-    background-color: ${(props) => props.theme.itemBgColor};
+    background-color: inherit;
 
     border: 3px solid ${(props) => props.theme.itemBorderColor};
     border-radius: 15px;
 `;
 
-const Nested_Items = styled.div`
+const Nested_Items = styled.div<I_MatchCheck>`
     width: 100px;
     padding: 10px;
-    background-color: ${(props) => props.theme.itemBorderColor};
+    background-color: ${(props) => props.isActive ? props.theme.itemBorderColor : props.theme.itemBgColor};
     border: 2px solid ${(props) => props.theme.itemBorderColor};
     border-radius: 20px;
     a {
         display: block;
         text-decoration: none;
-        color: ${(props) => props.theme.TextColor};;
+        color: ${(props) => props.isActive ? "black" : props.theme.itemTextColor};;
     };
 `;
 
@@ -135,6 +139,9 @@ const HomeBtn = styled.div`
 
 function Detail(){
     const {coinID} = useParams();
+
+    const priceMatch = useMatch(`/:coinID/price`);
+    const chartMatch = useMatch(`/:coinID/chart`);
 
     const {isLoading: DetailLoading, data: DetailData} = useQuery({
         queryKey: "CoinDetailData",
@@ -174,15 +181,15 @@ function Detail(){
                         {DetailData?.description}
                     </DescBox>
                     <Nesteds>
-                        <Nested_Items>
+                        <Nested_Items isActive={chartMatch !== null}>
                             <Link to={`/${coinID}/chart`}>Chart</Link>
                         </Nested_Items>
-                        <Nested_Items>
+                        <Nested_Items isActive={priceMatch !== null}>
                             <Link to={`/${coinID}/price`}>Price</Link>
                         </Nested_Items>
                     </Nesteds>
                     <Routes>
-                        <Route path="chart" element={<Chart />}/>
+                        <Route path="chart" element={<Chart coinNm={DetailData?.name} coinSymbol={DetailData?.symbol}/>}/>
                         <Route path="price" element={<Price />}/>
                     </Routes>
                 </Wrapper>

@@ -9,8 +9,8 @@ interface I_toggles {
 }
 
 const BtnContainer = styled.div`
-    width: 80px;
-    height: 30px;
+    width: 50px;
+    height: 25px;
     border: 3px solid black;
     border-radius: 25px;
 
@@ -28,8 +28,8 @@ const BtnContainer = styled.div`
 `;
 
 const Toggles = styled.div<I_toggles>`
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 2px solid black;
     border-radius: 20px;
     align-items: center;
@@ -38,7 +38,7 @@ const Toggles = styled.div<I_toggles>`
     position: absolute;
 
     transition: all 0.4s ease-in-out;
-    transform: ${(props) => props.toggle ? "translate(22px, 0)" : "translate(-22px, 0)"};
+    transform: ${(props) => props.toggle ? "translate(11px, 0)" : "translate(-11px, 0)"};
     background-color: ${(props) => props.theme.itemBgColor};
 `;
 
