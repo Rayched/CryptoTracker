@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
 import { useRecoilValue } from "recoil";
 import { isDarkTheme } from "../../modules/atoms";
+import { Helmet } from "react-helmet-async";
 
 interface I_Chart {
     coinNm?: string;
@@ -61,6 +62,9 @@ function Chart({coinNm, coinSymbol}: I_Chart){
 
     return (
         <>
+            <Helmet>
+                <title>{coinSymbol}/Chart</title>
+            </Helmet>
             {
                 chartLoading ? `${coinID}의 차트 데이터를 가져오고 있습니다.`
                 : (

@@ -10,6 +10,7 @@ import styled from "styled-components";
 import Chart from "./Details_data/Chart";
 import Price from "./Details_data/Price";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 interface I_MatchCheck {
     isActive: boolean|undefined;
@@ -150,6 +151,9 @@ function Detail(){
 
    return (
     <>
+        <Helmet>
+            <title>{DetailData?.name}</title>
+        </Helmet>
         {
             DetailLoading ? <LoadingPage />
             : (
@@ -190,7 +194,7 @@ function Detail(){
                     </Nesteds>
                     <Routes>
                         <Route path="chart" element={<Chart coinNm={DetailData?.name} coinSymbol={DetailData?.symbol}/>}/>
-                        <Route path="price" element={<Price />}/>
+                        <Route path="price" element={<Price coinSymbol={DetailData?.symbol} />}/>
                     </Routes>
                 </Wrapper>
             )

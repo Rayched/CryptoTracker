@@ -5,8 +5,12 @@
 import { useQuery } from "react-query";
 import { getCoinTickers } from "../../modules/fetchs";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import styled from "styled-components";
+import { Helmet } from "react-helmet-async";
+
+interface I_Priceprops {
+    coinSymbol?: string;
+}
 
 const Wrapper = styled.div`
     margin-top: 15px;
@@ -53,7 +57,7 @@ const Ticker_Item = styled.div`
     }
 `;
 
-function Price(){
+function Price({coinSymbol}: I_Priceprops){
     const {coinID} = useParams();
 
     const {isLoading: TickerLoading, data: TickerData} = useQuery({
@@ -63,6 +67,9 @@ function Price(){
 
     return (
         <>
+            <Helmet>
+                <title>{coinSymbol}/Price</title>
+            </Helmet>
             {
                 TickerLoading ? `${coinID}의 가격 정보를 가져오고 있습니다.`
                 : (
