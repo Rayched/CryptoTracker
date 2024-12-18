@@ -58,8 +58,6 @@ function Chart({coinNm, coinSymbol}: I_Chart){
 
     const isDarks = useRecoilValue(isDarkTheme);
 
-    console.log(CoinChart);
-
     return (
         <>
             <Helmet>
@@ -74,50 +72,55 @@ function Chart({coinNm, coinSymbol}: I_Chart){
                             <h4>{coinNm} / {coinSymbol} Chart</h4>
                         </ChartTitles>
                         <ChartBodys>
-                            <ReactApexChart 
-                                type="candlestick"
-                                series={[
-                                    {
-                                        name: "Price",
-                                        data: CoinChart?.map((price) => ({
-                                            x: new Date(price?.time_open as any),
-                                            y: [
-                                                parseFloat(String(price?.open)),
-                                                parseFloat(String(price?.high)),
-                                                parseFloat(String(price?.low)),
-                                                parseFloat(String(price.close))
-                                            ]
-                                        })) as any[]
-                                    }
-                                ]}
-                                options={{
-                                    plotOptions: {
-                                        candlestick: {
-                                            colors: {
-                                                upward: "#ff4757",
-                                                downward: "#5352ed"
+                            {
+                                chartLoading ? `${coinID}의 차트를 만들고 있습니다.`
+                                : (
+                                    <ReactApexChart 
+                                        type="candlestick"
+                                        series={[
+                                            {
+                                                name: "Price",
+                                                data: CoinChart?.map((price) => ({
+                                                    x: new Date(price?.time_open as any),
+                                                    y: [
+                                                        parseFloat(String(price?.open)),
+                                                        parseFloat(String(price?.high)),
+                                                        parseFloat(String(price?.low)),
+                                                        parseFloat(String(price.close))
+                                                    ]
+                                                })) as any[]
                                             }
-                                        }
-                                    },
-                                    theme: {
-                                        mode: isDarks ? "dark" : "light"
-                                    },
-                                    chart: {
-                                        width: "100%"
-                                    },
-                                    xaxis: {
-                                        type: "datetime",
-                                        categories: CoinChart?.map(
-                                            (price) => (price.time_close)
-                                        ),
-                                        labels: {
-                                            datetimeFormatter: {
-                                                month: "mmm 'yy"
+                                        ]}
+                                        options={{
+                                            plotOptions: {
+                                                candlestick: {
+                                                    colors: {
+                                                        upward: "#ff4757",
+                                                        downward: "#5352ed"
+                                                    }
+                                                }
+                                            },
+                                            theme: {
+                                                mode: isDarks ? "dark" : "light"
+                                            },
+                                            chart: {
+                                                width: "100%"
+                                            },
+                                            xaxis: {
+                                                type: "datetime",
+                                                categories: CoinChart?.map(
+                                                    (price) => (price.time_close)
+                                                ),
+                                                labels: {
+                                                    datetimeFormatter: {
+                                                        month: "mmm 'yy"
+                                                    }
+                                                }
                                             }
-                                        }
-                                    }
-                                }}
-                            />    
+                                        }}
+                                    />    
+                                )
+                            }
                         </ChartBodys>                
                     </ChartBox>
                 )

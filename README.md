@@ -164,3 +164,16 @@ function Detail(){
         울며 겨자먹기로 Github 저장소 이름을 변경하고 <br/>
         이에 맞춰서 `homepage`에도 반영시키고 다시 `deploy`
     - 다행히도 이번엔 문제 없이 프로젝트가 배포된 것을 확인할 수 있었다.
+
+### 📆 Day 4. 작업 요약 (2024.12.17 화요일)
+
+- **📑 Project, Responsive Web Design Update**
+    - 저번주에 `반응형 웹 디자인`에 대한 기본적인 부분을 학습했고 <br/>
+        이를 저번 Challenge 때 만든 `Crypto Tracker`에 적용하면서 <br/>
+        `반응형 웹 디자인`에 대해 감을 잡아보기로 했다.
+    
+    - 기존 `index.html` 파일에서 `viewport`와 관련된 <br/>
+        `<meta />` 태그를 다시 추가하였다. <br/>
+        (원래는 없었음...)
+    
+    

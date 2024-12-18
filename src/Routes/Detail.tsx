@@ -9,8 +9,8 @@ import LoadingPage from "../modules/LoadingPage";
 import styled from "styled-components";
 import Chart from "./Details_data/Chart";
 import Price from "./Details_data/Price";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import NavBars from "../modules/NavigationBars";
 
 interface I_MatchCheck {
     isActive: boolean|undefined;
@@ -37,8 +37,13 @@ const ImgContainer = styled.div`
     align-items: center;
     margin: 0px 10px;
     img {
-        width: 150px;
-        height: 150px;
+        width: 25vw;
+        height: 25vh;
+
+        @media screen and (max-width: 400px){
+            width: 15vw;
+            height: 15vh;
+        }
     }
 `;
 
@@ -78,7 +83,7 @@ const InfoBody = styled.div`
 const DescBox = styled.div`
     margin: 10px 0px;
     padding: 15px;
-    width: 500px;
+    width: 80vw;
     text-align: center;
 `;
 
@@ -89,7 +94,7 @@ const Nesteds = styled.div`
     align-items: center;
     text-align: center;
 
-    width: 300px;
+    width: 80vw;
     padding: 10px 20px;
 
     background-color: inherit;
@@ -99,7 +104,7 @@ const Nesteds = styled.div`
 `;
 
 const Nested_Items = styled.div<I_MatchCheck>`
-    width: 100px;
+    width: 30vw;
     padding: 10px;
     background-color: ${(props) => props.isActive ? props.theme.itemBorderColor : props.theme.itemBgColor};
     border: 2px solid ${(props) => props.theme.itemBorderColor};
@@ -109,33 +114,6 @@ const Nested_Items = styled.div<I_MatchCheck>`
         text-decoration: none;
         color: ${(props) => props.isActive ? "black" : props.theme.itemTextColor};;
     };
-`;
-
-const HomeBtn = styled.div`
-    display: flex;
-    justify-content: center;
-    text-align: center;
-
-    font-weight: bold;
-    background-color: ${(props) => props.theme.itemBorderColor};
-    border: 2px solid ${(props) => props.theme.itemTextColor};
-    border-radius: 15px;
-
-    position: fixed;
-    top: 93%;
-    left: 87%;
-    padding: 8px;
-
-    color: ${(props) => props.theme.TextColor};
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-    &:hover {
-        color: ${(props) => props.theme.itemTextColor};
-        background-color: ${(props) => props.theme.itemBgColor};
-    }
 `;
 
 function Detail(){
@@ -154,6 +132,7 @@ function Detail(){
         <Helmet>
             <title>{DetailData?.name}</title>
         </Helmet>
+        <NavBars />
         {
             DetailLoading ? <LoadingPage />
             : (
@@ -199,9 +178,6 @@ function Detail(){
                 </Wrapper>
             )
         }
-        <HomeBtn>
-            <Link to={"/"}>← Home</Link>
-        </HomeBtn>
     </>
    );
 };

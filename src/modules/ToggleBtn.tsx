@@ -21,8 +21,7 @@ const BtnContainer = styled.div`
     align-items: center;
 
     position: relative;
-    transition: all 0.4s ease-in-out;
-    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
     background-color: ${(props) => props.theme.itemTextColor};
 `;
@@ -37,7 +36,7 @@ const Toggles = styled.div<I_toggles>`
 
     position: absolute;
 
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
     transform: ${(props) => props.toggle ? "translate(11px, 0)" : "translate(-11px, 0)"};
     background-color: ${(props) => props.theme.itemBgColor};
 `;

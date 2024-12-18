@@ -3,7 +3,6 @@ import { isDarkTheme } from './modules/atoms';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { DarkTheme, LightTheme } from './modules/themes';
 import Routers from './Routes/Router';
-import ToggleBtn from './modules/ToggleBtn';
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -70,7 +69,7 @@ const Titles = styled.div`
   display: flex;
   justify-content: center;
 
-  font-size: 25px;
+  font-size: 2.4em;
   font-weight: bold;
   color: inherit;
 `;
@@ -82,12 +81,6 @@ const NavBar = styled.nav`
   margin-bottom: 5px;
 `
 
-const SolidBar = styled.div`
-  background-color: ${(props) => props.theme.itemBgColor};
-  width: 85%;
-  height: 3px;
-`;
-
 function App() {
   const isDarks = useRecoilValue(isDarkTheme);
 
@@ -96,11 +89,7 @@ function App() {
       <Crypto_header>
         <Titles>
             Crypto Tracker
-        </Titles> 
-        <NavBar>
-            <ToggleBtn />
-        </NavBar>
-        <SolidBar />
+        </Titles>
       </Crypto_header>
       <Routers />
       <GlobalStyle />

@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import LoadingPage from "../modules/LoadingPage";
 import { Helmet } from "react-helmet-async";
+import NavBars from "../modules/NavigationBars";
 
 const CoinItems = styled.div`
     display: flex;
@@ -17,8 +18,8 @@ const CoinItems = styled.div`
 `;
 
 const CoinItem = styled.li`
-    width: 700px;
-    padding: 3px;
+    width: 80vw;
+    padding: 3vw;
     margin: 10px 0px;
     background-color: ${(props) => props.theme.itemBgColor};
     border: 2px solid ${(props) => props.theme.itemBorderColor};
@@ -45,9 +46,9 @@ const CoinImg = styled.img`
 
 const CoinName = styled.div`
     display: inline-block;
-    width: 200px;
-    padding: 10px;
-    font-size: 20px;
+    width: 40vw;
+    padding: 5vw;
+    font-size: 1.5em;
     font-weight: bold;
 `;
 
@@ -59,6 +60,7 @@ function Home(){
 
     return (
         <>
+            <NavBars />
             <Helmet>
                 <title>Crypto Tracker</title>
             </Helmet>
