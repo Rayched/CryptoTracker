@@ -14,7 +14,6 @@ import styled from "styled-components";
 import ToggleBtn from "./ToggleBtn";
 import { Link, useMatch } from "react-router-dom";
 import { useState } from "react";
-import { inherits } from "util";
 import { useRecoilState } from "recoil";
 import { isDarkTheme } from "./atoms";
 
@@ -112,14 +111,71 @@ const Vertical_Bars = styled.div<I_VerticalNavs>`
     display: ${(props) => props.Opens ? "flex" : "none"};
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 20px 0px;
+`;
+
+const ThemeState = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 50%;
+    padding: 4px;
+    margin-bottom: 5px;
+
+    color: black;
+    border: 1px solid rgb(178, 190, 195);
+    border-radius: 15px;
+    background-color: rgba(178, 190, 195, 0.8);
+
+    span {
+        padding: 0px 5px;
+        text-align: center;
+        font-weight: bold;
+    }
+`;
+
+const ThemeSelector = styled.select`
+    width: 90%;
+    height: 60%;
+    padding: 4px;
+    border-radius: 15px;
+    font-weight: bold;
+
+    option {
+        font-weight: bold;
+    }
+`;
+
+const ReturnedHomeBtn = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    border: 1px solid rgb(178, 190, 195);
+    border-radius: 15px;
+    background-color: rgb(178, 190, 195);
+    margin: 40px 0px;
+    padding: 5px;
+    width: 80%;
+
+    a {
+        text-decoration: none;
+        font-weight: bold;
+        color: inherit;
+        display: block;
+    }
+
+    &:hover {
+        background-color: rgb(200, 200, 200);
+    }
 `;
 
 function NavBars(){
     const DetailsMatch = useMatch("/:coinID/*");
 
     const [isBars, setBars] = useState(false);
-    const [oldTheme, setOldTheme] = useState("Light");
 
     const [themes, setThemes] = useRecoilState(isDarkTheme);
 
@@ -130,10 +186,12 @@ function NavBars(){
         
         if(value === "Light"){
             setThemes(false);
-        } else {
+        } else if(value==="Dark"){
             setThemes(true)
+        } else {
+            return;
         }
-    }
+    };
 
     return (
         <NavContainer>
@@ -155,16 +213,19 @@ function NavBars(){
                     }
                 </BarOpenBtn>
                 <Vertical_Bars Opens={isBars}>
-                    <div>현재 테마: {themes ? "Dark" : "Light"}</div>
-                    <select onChange={ChangeThemes}>
+                    <ThemeState>
+                        <span>현재 테마</span>
+                        <span>{themes ? "Dark" : "Light"}</span>
+                        </ThemeState>
+                    <ThemeSelector onChange={ChangeThemes}>
                         <option>Light</option>
                         <option>Dark</option>
-                    </select>
+                    </ThemeSelector>
                     {
                         DetailsMatch ? (
-                            <div>
+                            <ReturnedHomeBtn>
                                 <Link to={"/"}>Home</Link>
-                            </div>
+                            </ReturnedHomeBtn>
                         ) : null
                     }
                 </Vertical_Bars>
