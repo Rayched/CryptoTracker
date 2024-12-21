@@ -15,6 +15,8 @@ import ToggleBtn from "./ToggleBtn";
 import { Link, useMatch } from "react-router-dom";
 import { useState } from "react";
 import { inherits } from "util";
+import { useRecoilState } from "recoil";
+import { isDarkTheme } from "./atoms";
 
 interface I_VerticalNavs {
     Opens?: boolean;
@@ -106,14 +108,32 @@ const OpenImgs = styled.img`
     margin: 0px;
 `;
 
-const Vertical_Bars = styled.div``;
+const Vertical_Bars = styled.div<I_VerticalNavs>`
+    display: ${(props) => props.Opens ? "flex" : "none"};
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0px;
+`;
 
 function NavBars(){
     const DetailsMatch = useMatch("/:coinID/*");
 
     const [isBars, setBars] = useState(false);
+    const [oldTheme, setOldTheme] = useState("Light");
+
+    const [themes, setThemes] = useRecoilState(isDarkTheme);
 
     const openBars = () => setBars(!isBars);
+
+    const ChangeThemes = (event: React.FormEvent<HTMLSelectElement>) => {
+        const {currentTarget: {value}} = event;
+        
+        if(value === "Light"){
+            setThemes(false);
+        } else {
+            setThemes(true)
+        }
+    }
 
     return (
         <NavContainer>
@@ -134,7 +154,20 @@ function NavBars(){
                         : <OpenImgs onClick={openBars} src="http://localhost:3000/CryptoTracker/icons/OpenImgs.png"/>
                     }
                 </BarOpenBtn>
-                <Vertical_Bars></Vertical_Bars>
+                <Vertical_Bars Opens={isBars}>
+                    <div>현재 테마: {themes ? "Dark" : "Light"}</div>
+                    <select onChange={ChangeThemes}>
+                        <option>Light</option>
+                        <option>Dark</option>
+                    </select>
+                    {
+                        DetailsMatch ? (
+                            <div>
+                                <Link to={"/"}>Home</Link>
+                            </div>
+                        ) : null
+                    }
+                </Vertical_Bars>
             </VerticalNavs>
             <SolidBar />
         </NavContainer>
