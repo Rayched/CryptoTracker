@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
-import { isDarkTheme } from './modules/atoms';
+import { isDarkTheme } from './atoms';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { DarkTheme, LightTheme } from './modules/themes';
-import Routers from './Routes/Router';
+import { DarkTheme, LightTheme } from './themes';
+import Routers from './Router';
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 

@@ -1,7 +1,7 @@
 //테마 변환 용 ToggleBtn Components
 
 import { useRecoilState } from "recoil";
-import { isDarkTheme } from "./atoms";
+import { isDarkTheme } from "../atoms";
 import styled from "styled-components";
 
 interface I_toggles {

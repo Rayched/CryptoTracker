@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import Detail from "./Detail";
+import Home from "./Routes/Home";
+import Details from "./Routes/Details/Details";
 
 function Routers(){
     return (
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Routes>
                 <Route path="/" element={<Home />}/>
-                <Route path="/:coinID/*" element={<Detail />}/>
+                <Route path="/:coinID/*" element={<Details />}/>
             </Routes>
         </BrowserRouter>
     );

@@ -4,13 +4,13 @@
 
 import { useQuery } from "react-query";
 import { Link, Route, Routes, useMatch, useParams } from "react-router-dom";
-import { getCoinDetailData, getCoinTickers } from "../modules/fetchs";
-import LoadingPage from "../modules/LoadingPage";
+import { getCoinDetailData, getCoinTickers } from "../../modules/fetchs";
+import LoadingPage from "../LoadingPage";
 import styled from "styled-components";
-import Chart from "./Details_data/Chart";
-import Price from "./Details_data/Price";
+import Chart from "./Nested/Chart";
+import Price from "./Nested/Price";
 import { Helmet } from "react-helmet-async";
-import NavBars from "../modules/NavigationBars";
+import NavBars from "../../modules/NavigationBars";
 
 interface I_MatchCheck {
     isActive: boolean|undefined;
@@ -127,6 +127,7 @@ function Detail(){
         queryFn: () => getCoinDetailData(coinID)
     });
 
+    /*
    return (
     <>
         <Helmet>
@@ -179,7 +180,8 @@ function Detail(){
             )
         }
     </>
-   );
+   );*/
+   return null;
 };
 
 export default Detail;

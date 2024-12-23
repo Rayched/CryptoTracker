@@ -7,7 +7,7 @@ import { useQuery } from "react-query";
 import { getCoinsData, I_Coins } from "../modules/fetchs";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import LoadingPage from "../modules/LoadingPage";
+import LoadingPage from "./LoadingPage";
 import { Helmet } from "react-helmet-async";
 import NavBars from "../modules/NavigationBars";
 

@@ -3,7 +3,7 @@
 //Detail 하위 요소
 
 import { useQuery } from "react-query";
-import { getCoinTickers } from "../../modules/fetchs";
+import { getCoinTickers } from "../../../modules/fetchs";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Helmet } from "react-helmet-async";
@@ -57,7 +57,7 @@ const Ticker_Item = styled.div`
     }
 `;
 
-function Price({coinSymbol}: I_Priceprops){
+function Price(){
     const {coinID} = useParams();
 
     const {isLoading: TickerLoading, data: TickerData} = useQuery({
@@ -67,16 +67,13 @@ function Price({coinSymbol}: I_Priceprops){
 
     return (
         <>
-            <Helmet>
-                <title>{coinSymbol}/Price</title>
-            </Helmet>
             {
                 TickerLoading ? `${coinID}의 가격 정보를 가져오고 있습니다.`
                 : (
                     <Wrapper>
                         <PriceTitles>
                             <img src={`https://static.coinpaprika.com/coin/${coinID}/logo.png`}/>
-                            <h4>{TickerData?.name} {TickerData?.symbol} 가격</h4>
+                            <h4>{TickerData?.name} Price</h4>
                         </PriceTitles>
                         <TickerBox>
                             <Ticker_Item>

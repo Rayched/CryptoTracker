@@ -4,11 +4,11 @@
 
 import { useQuery } from "react-query";
 import styled from "styled-components";
-import { getCoin_chartData } from "../../modules/fetchs";
+import { getCoin_chartData } from "../../../modules/fetchs";
 import { useParams } from "react-router-dom";
 import ReactApexChart from "react-apexcharts";
 import { useRecoilValue } from "recoil";
-import { isDarkTheme } from "../../modules/atoms";
+import { isDarkTheme } from "../../../atoms";
 import { Helmet } from "react-helmet-async";
 
 interface I_Chart {

@@ -15,7 +15,7 @@ import ToggleBtn from "./ToggleBtn";
 import { Link, useMatch } from "react-router-dom";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { isDarkTheme } from "./atoms";
+import { isDarkTheme } from "../atoms";
 
 interface I_VerticalNavs {
     Opens?: boolean;
@@ -208,8 +208,9 @@ function NavBars(){
             <VerticalNavs Opens={isBars}>
                 <BarOpenBtn isOpens={isBars}>
                     {
-                        isBars ? <CloseImgs onClick={openBars} src="http://localhost:3000/CryptoTracker/icons/CloseImgs.png"/>
-                        : <OpenImgs onClick={openBars} src="http://localhost:3000/CryptoTracker/icons/OpenImgs.png"/>
+                        isBars ? <CloseImgs onClick={openBars} src={`${process.env.PUBLIC_URL}/icons/CloseImgs.png`}/>
+                        : <OpenImgs onClick={openBars} src={`${process.env.PUBLIC_URL}/icons/OpenImgs.png`}/>
+                        //icons/CloseImgs.png
                     }
                 </BarOpenBtn>
                 <Vertical_Bars Opens={isBars}>
