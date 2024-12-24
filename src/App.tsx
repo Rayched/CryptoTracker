@@ -69,17 +69,10 @@ const Titles = styled.div`
   display: flex;
   justify-content: center;
 
-  font-size: 2.4em;
+  font-size: 25px;
   font-weight: bold;
   color: inherit;
 `;
-
-const NavBar = styled.nav`
-  width: 100%;
-  display: flex;
-  justify-content: right;
-  margin-bottom: 5px;
-`
 
 function App() {
   const isDarks = useRecoilValue(isDarkTheme);

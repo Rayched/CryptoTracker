@@ -77,6 +77,10 @@ const VerticalNavs = styled.div<I_VerticalNavs>`
             : "inherit"
         };
         border-radius: 20px;
+    };
+
+    @media screen and (max-width: 400px){
+        top: 0.4%;
     }
 `;
 
@@ -98,6 +102,11 @@ const CloseImgs = styled.img`
     height: 5vh;
     display: block;
     margin: 0px;
+
+    @media screen and (max-width: 400px){
+        width: 8vw;
+        height: 3.5vh;
+    }
 `;
 
 const OpenImgs = styled.img`
@@ -105,6 +114,11 @@ const OpenImgs = styled.img`
     height: 5vh;
     display: block;
     margin: 0px;
+
+    @media screen and (max-width: 400px){
+        width: 8vw;
+        height: 3.5vh;
+    }
 `;
 
 const Vertical_Bars = styled.div<I_VerticalNavs>`

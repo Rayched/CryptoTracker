@@ -43,6 +43,10 @@ const TickerBox = styled.div`
     background-color: ${(props) => props.theme.itemBorderColor};
     border-radius: 10px;
     width: 350px;
+
+    @media screen and (max-width: 400px){
+        width: 300px;
+    }
 `;
 
 const Ticker_Item = styled.div`

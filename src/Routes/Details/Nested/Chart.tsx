@@ -29,6 +29,10 @@ interface I_ChartData {
 
 const ChartBox = styled.div`
     margin-top: 15px;
+
+    @media screen and (max-width: 400px){
+        margin-top: 10px;
+    }
 `;
 
 const ChartTitles = styled.div`
@@ -46,6 +50,11 @@ const ChartTitles = styled.div`
 
 const ChartBodys = styled.div`
     margin-top: 5px;
+
+    @media screen and (max-width: 400px){
+        margin-top: 3px;
+        max-height: 85%;
+    }
 `;
 
 function Chart({coinNm, coinSymbol}: I_Chart){
@@ -60,9 +69,6 @@ function Chart({coinNm, coinSymbol}: I_Chart){
 
     return (
         <>
-            <Helmet>
-                <title>{coinSymbol}/Chart</title>
-            </Helmet>
             {
                 chartLoading ? `${coinID}의 차트 데이터를 가져오고 있습니다.`
                 : (
@@ -104,7 +110,8 @@ function Chart({coinNm, coinSymbol}: I_Chart){
                                                 mode: isDarks ? "dark" : "light"
                                             },
                                             chart: {
-                                                width: "100%"
+                                                width: "90%",
+                                                height: "90%"
                                             },
                                             xaxis: {
                                                 type: "datetime",

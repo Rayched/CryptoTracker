@@ -9,6 +9,10 @@ import NavBars from "../../modules/NavigationBars";
 import Chart from "./Nested/Chart";
 import Price from "./Nested/Price";
 
+interface I_NestedBtn {
+    isActives: boolean;
+}
+
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -22,6 +26,10 @@ const Wrapper = styled.div`
     @media screen and (max-width: 500px){
         font-size: 18px;
     }
+
+    @media screen and (max-width: 400px){
+        font-size: 16px;
+    }
 `;
 
 const CoinDetails = styled.div`
@@ -31,6 +39,10 @@ const CoinDetails = styled.div`
     align-items: center;
     width: 80vw;
     height: 25vh;
+
+    @media screen and (max-width: 400px){
+        height: 20vh;
+    };
 `;
 
 const CoinImgs = styled.img`
@@ -42,6 +54,10 @@ const CoinImgs = styled.img`
     @media screen and (max-width: 500px){
         width: 25vw;
         height: 25vw;
+    }
+    @media screen and (max-width: 400px){
+        width: 18vw;
+        height: 15vh;
     }
 `;
 
@@ -66,6 +82,11 @@ const CoinData = styled.div`
     color: ${(props) => props.theme.itemTextColor};
     background-color: ${(props) => props.theme.itemBgColor};
     border-radius: 15px;
+
+    @media screen and (max-width: 400px){
+        width: 55vw;
+        height: 17vh;
+    }
 `;
 
 const Desc = styled.div`
@@ -86,36 +107,42 @@ const NestedContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px 0px;
+    padding: 10px;
+    background-color: ${(props) => props.theme.itemBgColor};
+    margin-top: 10px;
+    border-radius: 15px;
 `;
 
 const NestedBtn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 15px;
+    font-size: 18px;
 
-    width: 35vw;
+    width: 12vw;
     height: 3vh;
-    margin: 0px 5px;
-    
+    margin: 0px 10px;
+
+    background-color: ${(props) => props.theme.itemBorderColor};
+
     a {
         display: block;
         text-decoration: none;
-        padding: 0px 5px;
+        padding: 0px 10px;
+        color: ${(props) => props.theme.TextColor};
     }
 
     &:hover {
-        background-color: gray;
+        a {
+            color: ${(props) => props.theme.itemTextColor};
+        }
+        background-color: ${(props) => props.theme.itemBgColor};
+        border: 2px solid ${(props) => props.theme.itemBorderColor};
     }
 
-    @media screen and (max-width: 500px){
-        width: 70px;
-        font-size: 20px;
-        a {
-            padding: 0px;
-        }
+    @media screen and (max-width: 400px){
+        width: 60px;
     }
 `;
 
