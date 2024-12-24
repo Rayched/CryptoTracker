@@ -10,7 +10,7 @@ import Chart from "./Nested/Chart";
 import Price from "./Nested/Price";
 
 interface I_NestedBtn {
-    isActives: boolean;
+    isActives?: boolean;
 }
 
 const Wrapper = styled.div`
@@ -113,7 +113,7 @@ const NestedContainer = styled.div`
     border-radius: 15px;
 `;
 
-const NestedBtn = styled.div`
+const NestedBtn = styled.div<I_NestedBtn>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,21 +124,14 @@ const NestedBtn = styled.div`
     height: 3vh;
     margin: 0px 10px;
 
-    background-color: ${(props) => props.theme.itemBorderColor};
+    background-color: ${(props) => props.isActives ? props.theme.itemBgColor : props.theme.itemBorderColor};
+    border: 2px solid ${(props) => props.isActives ? props.theme.itemBorderColor: props.theme.itemBgColor};
 
     a {
         display: block;
         text-decoration: none;
         padding: 0px 10px;
-        color: ${(props) => props.theme.TextColor};
-    }
-
-    &:hover {
-        a {
-            color: ${(props) => props.theme.itemTextColor};
-        }
-        background-color: ${(props) => props.theme.itemBgColor};
-        border: 2px solid ${(props) => props.theme.itemBorderColor};
+        color: ${(props) => props.isActives ? props.theme.itemTextColor: props.theme.TextColor};
     }
 
     @media screen and (max-width: 400px){
@@ -177,11 +170,7 @@ function Details(){
         const FullDates = [Years, Months, Dates];
 
         return FullDates.join("-");
-    }
-
-    useEffect(() => {
-        console.log(DetailData);
-    }, [DetailsLoading]);
+    };
 
     return (
         <>
@@ -212,11 +201,11 @@ function Details(){
                         </CoinDetails>
                         <Desc>{DetailData?.description}</Desc>
                         <NestedContainer>
-                            <NestedBtn>
-                                <Link to={`/${coinID}/chart`}>Chart</Link>
+                            <NestedBtn isActives={isChart ? true : false}>
+                                <Link to={isChart ? `/${coinID}/*`: `/${coinID}/chart`}>Chart</Link>
                             </NestedBtn>
-                            <NestedBtn>
-                                <Link to={`/${coinID}/price`}>Price</Link>
+                            <NestedBtn isActives={isPrice ? true : false}>
+                                <Link to={isPrice ? `/${coinID}/*`:`/${coinID}/price`}>Price</Link>
                             </NestedBtn>
                         </NestedContainer>
                         <NestedPages>
