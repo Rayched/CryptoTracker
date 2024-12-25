@@ -15,10 +15,12 @@ const CoinItems = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 800px;
 `;
 
 const CoinItem = styled.li`
     width: 80vw;
+    max-width: 600px;
     padding: 3vw;
     margin: 10px 0px;
     background-color: ${(props) => props.theme.itemBgColor};

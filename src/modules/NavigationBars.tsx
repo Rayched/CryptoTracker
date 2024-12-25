@@ -32,8 +32,10 @@ const NavContainer = styled.div`
 const HorizontalNavs = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: right;
+    padding-right: 7vw;
+    margin-bottom: 3px;
+    width: 100%;
 
     @media screen and (max-width: 500px){
         display: none;
@@ -47,12 +49,15 @@ const HomeBtn = styled.div`
     width: 8vw;
     height: 3vh;
     padding: 2px;
-    background-color: white;
-    border-radius: 20px;
+    background-color: ${(props) => props.theme.itemBgColor};
+    border: 2px solid ${(props) => props.theme.itemBorderColor};
+    border-radius: 15px;
+    margin-right: 8px;
     a {
         display: block;
         text-decoration: none;
         font-weight: bold;
+        color: ${(props) => props.theme.itemTextColor};
     };
 `;
 

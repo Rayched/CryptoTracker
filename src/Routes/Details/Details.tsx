@@ -47,8 +47,8 @@ const CoinDetails = styled.div`
 
 const CoinImgs = styled.img`
     display: block;
-    width: 35vw;
-    height: 35vh;
+    width: 25vw;
+    height: 20vh;
     padding: 3px;
     margin: 0px 3px;
     @media screen and (max-width: 500px){

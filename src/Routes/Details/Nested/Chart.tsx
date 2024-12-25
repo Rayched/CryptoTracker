@@ -28,7 +28,7 @@ interface I_ChartData {
 };
 
 const ChartBox = styled.div`
-    margin-top: 15px;
+    margin-top: 5px;
 
     @media screen and (max-width: 400px){
         margin-top: 10px;
@@ -49,7 +49,9 @@ const ChartTitles = styled.div`
 `;
 
 const ChartBodys = styled.div`
-    margin-top: 5px;
+    margin-top: 2px;
+    width: 50vw;
+    height: 10vh;
 
     @media screen and (max-width: 400px){
         margin-top: 3px;
@@ -111,7 +113,7 @@ function Chart({coinNm, coinSymbol}: I_Chart){
                                             },
                                             chart: {
                                                 width: "90%",
-                                                height: "90%"
+                                                height: "80%"
                                             },
                                             xaxis: {
                                                 type: "datetime",
